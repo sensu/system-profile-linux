@@ -48,5 +48,10 @@ func configureRootCommand() *cobra.Command {
 	cmd.Flags().StringVar(&host, "host", "127.0.0.1", "graphite host where to send the metrics")
 	cmd.Flags().IntVar(&port, "port", 8080, "graphite host port")
 	cmd.Flags().BoolVar(&graphiteEnabled, "graphiteEnabled", true, "graphite enabled or not")
+
+	cmd.MarkFlagRequired("interval")
+	cmd.MarkFlagRequired("prefix")
+	cmd.MarkFlagRequired("host")
+	cmd.MarkFlagRequired("port")
 	return cmd
 }
