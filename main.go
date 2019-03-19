@@ -7,8 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/sreejita-biswas/sensu-extensions-system-profile/plugins"
-
+	"github.com/sensu-skunkworks/system-profile-linux/plugins"
 	"github.com/spf13/cobra"
 )
 
