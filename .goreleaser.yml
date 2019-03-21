@@ -3,8 +3,6 @@ builds:
 - # First Build
   env:
     - CGO_ENABLED=0
-  main: ./main.go
-  binary: bin/sensu-extensions-system-profile
   goos:
     - darwin
     - freebsd

@@ -3,13 +3,12 @@ package plugins
 import (
 	"fmt"
 	"io/ioutil"
+	"strconv"
 	"strings"
 	"time"
-
-	graphite "github.com/marpaia/graphite-golang"
 )
 
-var metrics = []graphite.Metric{}
+var metrics = []string{}
 
 func parseProcStat() {
 	contents, err := ioutil.ReadFile("/proc/stat")
@@ -72,35 +71,18 @@ func procMeminfoMetrics() {
 
 func addMetric(metricType []string, value string) {
 	metricName := strings.Join(metricType, ".")
-	metric := graphite.NewMetric(metricName, value, time.Now().Unix())
-	metrics = append(metrics, metric)
+	timeNow := time.Now().Unix()
+	outputs := []string{metricName, value, strconv.FormatInt(timeNow, 16)}
+	metrics = append(metrics, strings.Join(outputs, " "))
 }
 
 func flushMetrics() {
-	metrics = []graphite.Metric{}
+	metrics = []string{}
 }
 
-func SendMetrics(graphiteEnabled bool, graphiteHost string, graphitePort int, metricsPrefix string, interval time.Duration) {
-	var graphiteInstance *graphite.Graphite
-	var err error
-	if graphiteEnabled {
-		graphiteInstance, err = graphite.NewGraphiteWithMetricPrefix(graphiteHost, graphitePort, metricsPrefix)
-	} else {
-		graphiteInstance = graphite.NewGraphiteNop(graphiteHost, graphitePort)
+func PrintMetrics() {
+	for _, metric := range metrics {
+		fmt.Println(metric)
 	}
-
-	fmt.Printf("Loaded Graphite connection: %#v", graphiteInstance)
-	// if you couldn't connect to graphite, use a nop
-	if err != nil {
-		graphiteInstance = graphite.NewGraphiteNop(graphiteHost, graphitePort)
-	}
-
-	for {
-		parseProcStat()
-		procLoadavgMetrics()
-		procMeminfoMetrics()
-		graphiteInstance.SendMetrics(metrics)
-		time.Sleep(interval * time.Minute)
-		flushMetrics()
-	}
+	flushMetrics()
 }
