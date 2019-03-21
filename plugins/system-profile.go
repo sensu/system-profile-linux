@@ -56,7 +56,10 @@ func procNetDevMetrics() {
 	}
 	metrcis := []string{"rxbytes", "rxpackets", "rxerrors", "rxdrops", "rxfifo", "rxframe", "rxcompressed", "rxmulticast", "txbytes", "txpackets", "txerrors", "txdrops", "txfifo", "txcolls", "txcarrier", "txcompressed"}
 	lines := strings.Split(string(contents), "\n")
-	for _, line := range lines {
+	for lineNumber, line := range lines {
+		if lineNumber == 0{
+			continue
+		}
 		fields := strings.Fields(line)
 		for index, field := range fields {
 			if index == 0 {
