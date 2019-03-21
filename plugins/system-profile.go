@@ -57,7 +57,7 @@ func procNetDevMetrics() {
 	metrcis := []string{"rxbytes", "rxpackets", "rxerrors", "rxdrops", "rxfifo", "rxframe", "rxcompressed", "rxmulticast", "txbytes", "txpackets", "txerrors", "txdrops", "txfifo", "txcolls", "txcarrier", "txcompressed"}
 	lines := strings.Split(string(contents), "\n")
 	for lineNumber, line := range lines {
-		if lineNumber == 0{
+		if lineNumber == 0 {
 			continue
 		}
 		fields := strings.Fields(line)
@@ -110,7 +110,7 @@ func PrintMetrics(prefix string) {
 	procMeminfoMetrics()
 	procNetDevMetrics()
 	for _, metric := range metrics {
-		fmt.Println(fmt.Sprintf("%s.%s",prefix, metric)
+		fmt.Println(fmt.Sprintf("%s.%s", prefix, metric))
 	}
 	flushMetrics()
 }
