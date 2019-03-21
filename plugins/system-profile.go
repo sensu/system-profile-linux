@@ -48,6 +48,27 @@ func procLoadavgMetrics() {
 	return
 }
 
+func procNetDevMetrics() {
+	var interface_name string
+	contents, err := ioutil.ReadFile("/proc/net/dev")
+	if err != nil {
+		return
+	}
+	metrcis := []string{"rxbytes", "rxpackets", "rxerrors", "rxdrops", "rxfifo", "rxframe", "rxcompressed", "rxmulticast", "txbytes", "txpackets", "txerrors", "txdrops", "txfifo", "txcolls", "txcarrier", "txcompressed"}
+	lines := strings.Split(string(contents), "\n")
+	for _, line := range lines {
+		fields := strings.Fields(line)
+		for index, field := range fields {
+			if index == 0 {
+				interface_name = strings.Split(field, ":")[0]
+				continue
+			}
+			addMetric([]string{"net", interface_name, metrcis[index-1]}, field)
+		}
+	}
+	return
+}
+
 func procMeminfoMetrics() {
 	contents, err := ioutil.ReadFile("/proc/meminfo")
 	if err != nil {
@@ -80,9 +101,13 @@ func flushMetrics() {
 	metrics = []string{}
 }
 
-func PrintMetrics() {
+func PrintMetrics(prefix string) {
+	parseProcStat()
+	procLoadavgMetrics()
+	procMeminfoMetrics()
+	procNetDevMetrics()
 	for _, metric := range metrics {
-		fmt.Println(metric)
+		fmt.Println(fmt.Sprintf("%s.%s",prefix, metric)
 	}
 	flushMetrics()
 }
