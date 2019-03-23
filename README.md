@@ -1,15 +1,16 @@
-[![TravisCI Build Status](https://travis-ci.com/sensu-skunkworks/system-profile-linux.svg?branch=master)](https://travis-ci.com/sensu-skunkworks/system-profile-linux.svg?branch=master)
+[![Build Status](https://travis-ci.com/sensu-skunkworks/system-profile-linux.svg?branch=master)](https://travis-ci.com/sensu-skunkworks/system-profile-linux)
 
 # System Profile Linux
 
 A Sensu plugin for collecting system resource metrics from the procfile system,
-with the aim to provide a Sensu-native alternative to Collectd.
+with the aim to provide a Sensu-native alternative to Collectd's built-in
+system resource telemetry.
 
 - [Overview](#overview)
 - [Usage Example(s)](#usage-examples)
 - [Configuration](#configuration)
   - [Asset Manifest](#asset-manifest)
-  - [Check Manifest](#check-manifest)
+  - [Check Manifest(s)](#check-manifests)
 - [Metrics](#metrics)
   - [`/proc/stat` metrics](#proc-stat-metrics)
   - [`/proc/loadavg` metrics](#proc-loadavg-metrics)
