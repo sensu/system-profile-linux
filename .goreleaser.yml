@@ -3,6 +3,7 @@ builds:
 - # First Build
   env:
     - CGO_ENABLED=0
+  main: main.go
   goos:
     - darwin
     - freebsd

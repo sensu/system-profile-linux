@@ -1,4 +1,4 @@
-package plugins
+package main
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func parseProcStat() {
 	for _, line := range lines {
 		fields := strings.Fields(line)
 		if len(fields) > 1 && strings.HasPrefix(fields[0], "cpu") {
-			for i := 1; i < len(fields); i++ {
+			for i := 1; i < len(fields) && i < 9; i++ {
 				addMetric([]string{fields[0], cpuMetrics[i-1]}, fields[i])
 			}
 		} else if len(fields) > 1 {
@@ -96,7 +96,7 @@ func procMeminfoMetrics() {
 func addMetric(metricType []string, value string) {
 	metricName := strings.Join(metricType, ".")
 	timeNow := time.Now().Unix()
-	outputs := []string{metricName, value, strconv.FormatInt(timeNow, 16)}
+	outputs := []string{metricName, value, strconv.FormatInt(timeNow, 10)}
 	metrics = append(metrics, strings.Join(outputs, " "))
 }
 
@@ -104,13 +104,13 @@ func flushMetrics() {
 	metrics = []string{}
 }
 
-func PrintMetrics(prefix string) {
+func main() {
 	parseProcStat()
 	procLoadavgMetrics()
 	procMeminfoMetrics()
 	procNetDevMetrics()
 	for _, metric := range metrics {
-		fmt.Println(fmt.Sprintf("%s.%s", prefix, metric))
+		fmt.Println(fmt.Sprintf("%s", metric))
 	}
 	flushMetrics()
 }
