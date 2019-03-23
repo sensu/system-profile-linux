@@ -206,6 +206,8 @@ metadata:
 spec:
   command: system-profile-linux
   runtime_assets: system-profile-linux-amd64
+  subscriptions:
+  - linux
   interval: 10
   timeout: 5
   output_metric_format: graphite_plaintext
