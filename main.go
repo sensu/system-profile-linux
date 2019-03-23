@@ -1,4 +1,4 @@
-package plugins
+package main
 
 import (
 	"fmt"
@@ -96,7 +96,7 @@ func procMeminfoMetrics() {
 func addMetric(metricType []string, value string) {
 	metricName := strings.Join(metricType, ".")
 	timeNow := time.Now().Unix()
-	outputs := []string{metricName, value, strconv.FormatInt(timeNow, 16)}
+	outputs := []string{metricName, value, strconv.FormatInt(timeNow, 10)}
 	metrics = append(metrics, strings.Join(outputs, " "))
 }
 
@@ -104,13 +104,13 @@ func flushMetrics() {
 	metrics = []string{}
 }
 
-func PrintMetrics(prefix string) {
-	parseProcStat()
+func main() {
+	// parseProcStat()
 	procLoadavgMetrics()
 	procMeminfoMetrics()
 	procNetDevMetrics()
 	for _, metric := range metrics {
-		fmt.Println(fmt.Sprintf("%s.%s", prefix, metric))
+		fmt.Println(fmt.Sprintf("%s", metric))
 	}
 	flushMetrics()
 }
