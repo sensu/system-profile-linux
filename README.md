@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/sensu-skunkworks/system-profile-linux.svg?branch=master)](https://travis-ci.com/sensu-skunkworks/system-profile-linux)
+[![Build Status](https://travis-ci.com/sensu/system-profile-linux.svg?branch=master)](https://travis-ci.com/sensu/system-profile-linux)
 
 # System Profile Linux
 
