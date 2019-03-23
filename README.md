@@ -216,79 +216,79 @@ spec:
 
 ### `/proc/stat` metrics
 
-- **name:** `cpu.user` (or `cpuN.user`)
+- **name:** `cpu.user` (or `cpuN.user`)  
   **description:** Normal processes executing in user mode; `cpu.user` is the
-  aggregate of the `cpuN.user` metrics (one per physical or virtual CPU).
-  **unit:** [jiffies][jiffies]
+  aggregate of the `cpuN.user` metrics (one per physical or virtual CPU).  
+  **unit:** [jiffies][jiffies]  
 
-- **name:** `cpu.nice`
+- **name:** `cpu.nice`  
   **description:** Niced processes executing in user mode; `cpu.nice` is the
-  aggregate of the `cpuN.nice` metrics (one per physical or virtual CPU).
-  **unit:** [jiffies][jiffies]
+  aggregate of the `cpuN.nice` metrics (one per physical or virtual CPU).  
+  **unit:** [jiffies][jiffies]  
 
-- **name:** `cpu.system`
+- **name:** `cpu.system`  
   **description:** Processes executing in kernel mode; `cpu.system` is the
-  aggregate of the `cpuN.system` metrics (one per physical or virtual CPU).
-  **unit:** [jiffies][jiffies]
+  aggregate of the `cpuN.system` metrics (one per physical or virtual CPU).  
+  **unit:** [jiffies][jiffies]  
 
-- **name:** `cpu.idle`
+- **name:** `cpu.idle`  
   **description:** Twiddling thumbs; `cpu.idle` is the aggregate of the
-  `cpuN.idle` metrics (one per physical or virtual CPU).
-  **unit:** [jiffies][jiffies]
+  `cpuN.idle` metrics (one per physical or virtual CPU).  
+  **unit:** [jiffies][jiffies]  
 
-- **name:** `cpu.iowait`
+- **name:** `cpu.iowait`  
   **description:** Waiting for I/O to complete; `cpu.iowait` is the aggregate of
-  the `cpuN.iowait` metrics (one per physical or virtual CPU).
-  **unit:** [jiffies][jiffies]
+  the `cpuN.iowait` metrics (one per physical or virtual CPU).  
+  **unit:** [jiffies][jiffies]  
 
-- **name:** `cpu.irq`
+- **name:** `cpu.irq`  
   **description:** Servicing interrupt requests; `cpu.irq` is the aggregate of
-  the `cpuN.irq` metrics (one per physical or virtual CPU). References:
-  [wikipedia](https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture))
+  the `cpuN.irq` metrics (one per physical or virtual CPU).
   **unit:** [jiffies][jiffies]
 
-- **name:** `cpu.softirq`
+- **name:** `cpu.softirq`  
   **description:** Servicing soft interrupt requests; `cpu.softirq` is the
-  aggregate of the `cpuN.softirq` metrics (one per physical or virtual CPU).
-  **unit:** [jiffies][jiffies]
+  aggregate of the `cpuN.softirq` metrics (one per physical or virtual CPU).  
+  **unit:** [jiffies][jiffies]  
 
-- **name:** `cpu.steal`
-  **description:**
-  **unit:**
+- **name:** `cpu.steal`  
+  **description:**  
+  **unit:**  
 
-- **name:** `intr`
-  **description:** Interrupts serviced since boot time.
-  **unit:** counter
+- **name:** `intr`  
+  **description:** Interrupts serviced since boot time.  
+  **unit:** counter  
 
-- **name:** `ctxt`
-  **description:** Total number of context switches across all CPUs.
-  **unit:** counter
+- **name:** `ctxt`  
+  **description:** Total number of context switches across all CPUs.  
+  **unit:** counter  
 
-- **name:** `btime`
-  **description:** The time the system booted.
-  **unit:** seconds since the Unix epoch
+- **name:** `btime`  
+  **description:** The time the system booted.  
+  **unit:** seconds since the Unix epoch  
 
-- **name:** `processes`
+- **name:** `processes`  
   **description:** The number of processes and threads created, which includes
   (but is not limited to) those created by calls to the fork() and clone()
-  system calls.
-  **unit:** counter
+  system calls.  
+  **unit:** counter  
 
-- **name:** `procs_running`
-  **description:** The total number of processes running on all CPUs.
-  **unit:** counter
+- **name:** `procs_running`  
+  **description:** The total number of processes running on all CPUs.  
+  **unit:** counter  
 
-- **name:** `procs_blocked`
+- **name:** `procs_blocked`  
   **description:** The number of processes currently blocked, waiting for I/O to
-  complete.
-  **unit:** counter
+  complete.  
+  **unit:** counter  
 
-- **name:** `softirq`
-  **description:**
-  **unit:**
+- **name:** `softirq`  
+  **description:**  
+  **unit:**  
 
 References:
-- [LinuxHowTos `/proc/stat` explained](http://www.linuxhowtos.org/System/procstat.htm)
+- [LinuxHowTos: `/proc/stat` explained](http://www.linuxhowtos.org/System/procstat.htm)  
+- [Wikipedia: Interrupt request (PC architecture)](https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture))  
 
 [jiffies]: http://man7.org/linux/man-pages/man7/time.7.html
 
