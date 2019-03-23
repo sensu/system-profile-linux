@@ -20,7 +20,7 @@ func parseProcStat() {
 	for _, line := range lines {
 		fields := strings.Fields(line)
 		if len(fields) > 1 && strings.HasPrefix(fields[0], "cpu") {
-			for i := 1; i < len(fields); i++ {
+			for i := 1; i < len(fields) && i < 9; i++ {
 				addMetric([]string{fields[0], cpuMetrics[i-1]}, fields[i])
 			}
 		} else if len(fields) > 1 {
@@ -105,7 +105,7 @@ func flushMetrics() {
 }
 
 func main() {
-	// parseProcStat()
+	parseProcStat()
 	procLoadavgMetrics()
 	procMeminfoMetrics()
 	procNetDevMetrics()
