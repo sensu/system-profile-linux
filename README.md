@@ -205,7 +205,8 @@ metadata:
   namespace: default
 spec:
   command: system-profile-linux
-  runtime_assets: system-profile-linux-amd64
+  runtime_assets: 
+  - system-profile-linux-amd64
   subscriptions:
   - linux
   interval: 10
