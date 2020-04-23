@@ -87,7 +87,6 @@ func procMeminfoMetrics() {
 			addMetric([]string{"swap", metric}, fields[1])
 		}
 	}
-	return
 }
 
 func addMetric(metricType []string, value string) {
