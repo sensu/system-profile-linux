@@ -27,7 +27,6 @@ func parseProcStat() {
 			addMetric([]string{fields[0]}, fields[len(fields)-1])
 		}
 	}
-	return
 }
 
 func procLoadavgMetrics() {
@@ -45,7 +44,6 @@ func procLoadavgMetrics() {
 			}
 		}
 	}
-	return
 }
 
 func procNetDevMetrics() {
@@ -69,7 +67,6 @@ func procNetDevMetrics() {
 			addMetric([]string{"net", interface_name, metrcis[index-1]}, field)
 		}
 	}
-	return
 }
 
 func procMeminfoMetrics() {
@@ -110,7 +107,7 @@ func main() {
 	procMeminfoMetrics()
 	procNetDevMetrics()
 	for _, metric := range metrics {
-		fmt.Println(fmt.Sprintf("%s", metric))
+		fmt.Println(metric)
 	}
 	flushMetrics()
 }
